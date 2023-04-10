@@ -5,6 +5,7 @@ defmodule Mix.Tasks.Freeze do
   # Copy assets folder to _freeze
   # Generate list of routes to visit based on router.ex and generators
   # Query the routes and get the HTML back
+  # Use system command to run wrangler to upload to cloudflare pages
   use Mix.Task
   alias Phoenix.Router
   alias HTTPoison
@@ -34,7 +35,17 @@ defmodule Mix.Tasks.Freeze do
     {:ok, _} = Application.ensure_all_started(:frozen, :permanent)
     FrozenWeb.Endpoint.start_link()
 
-    # Visit index page
+    # Get path, omodule and fuction from list
+    Application.get_env(:frozen,)
+
+    # Generate list of routes
+
+    # Determine save path fro mix.exs default _freeze
+
+    # Visit all the pages and download to folder
+    # Copy static assets to folder
+
+    # ADD CLOUDFLARE PIECE HERE WITH CF FLAG
   end
 
   def get_app_name() do
