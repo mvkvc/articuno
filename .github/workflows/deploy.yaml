@@ -1,0 +1,63 @@
+name: deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "nimble_school/**"
+
+env:
+  ELIXIR_VERSION: 1.14
+  OTP_VERSION: 25
+  EXAMPLE_PROJECT: nimble_school
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.EXAMPLE_PROJECT }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: ${{ env.OTP_VERSION }}
+          elixir-version: ${{ env.ELIXIR_VERSION }}
+
+      - uses: actions/cache@v3
+        id: mix-cache
+        with:
+          path: |
+            ${{ env.EXAMPLE_PROJECT }}/deps
+            ${{ env.EXAMPLE_PROJECT }}/_build
+          key: ${{ runner.os }}-${{ env.OTP_VERSION }}-${{ env.ELIXIR_VERSION }}-mix-${{ hashFiles('${{ env.EXAMPLE_PROJECT }}/**/mix.lock') }}
+
+      - run: |
+          mix local.rebar --force
+          mix local.hex --force
+          mix deps.get
+        if: steps.mix-cache.outputs.cache-hit != 'true'
+
+      - name: Build Site
+        run: mix freeze
+
+      - name: Upload Site
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ${{ env.EXAMPLE_PROJECT }}/_freeze
+
+  deploy:
+    needs: build
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/deploy-pages@v1
