@@ -43,7 +43,7 @@ jobs:
         if: steps.mix-cache.outputs.cache-hit != 'true'
 
       - name: Build Site
-        run: mix freeze
+        run: mix freeze && echo "ls -la _freeze"
 
       - name: Archive Site
         uses: actions/upload-artifact@v2
