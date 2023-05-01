@@ -44,24 +44,11 @@ jobs:
       - name: Build Site
         run: mix freeze
 
-      - name: Archive Site
-        uses: actions/upload-artifact@v2
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v2.0
         with:
-          name: site
-          path: ${{ env.EXAMPLE_PROJECT }}/_freeze
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v2
-        with:
-          name: site
-
-      - uses: netlify/actions/cli@v1
-        with:
-          command: deploy
-          args: --dir=_freeze --prod
+          publish-dir: "${{ env.EXAMPLE_PROJECT }}/_freeze"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1
