@@ -1,8 +1,10 @@
 # articuno
 
+[![deploy](https://github.com/mvkvc/articuno/actions/workflows/deploy.yaml/badge.svg?branch=main)](https://github.com/mvkvc/articuno/actions/workflows/deploy.yaml)
+
 Freeze your Phoenix web application into a static site.
 
-For any Phoenix application that doesn't need to be dynamic such as a blog, this library can be used. I created it so that I could host a NimblePublisher blog on a static host such as GitHub Pages.
+This library can be used for any Phoenix application that doesn't need to be dynamic such as a blog. I created it so that I could host a NimblePublisher blog on a static host such as GitHub Pages.
 
 ## Installation
 
