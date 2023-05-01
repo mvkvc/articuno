@@ -1,7 +1,6 @@
 name: deploy
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
@@ -20,14 +19,14 @@ jobs:
       run:
         working-directory: ${{ env.EXAMPLE_PROJECT }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
       - uses: erlef/setup-beam@v1
         with:
           otp-version: ${{ env.OTP_VERSION }}
           elixir-version: ${{ env.ELIXIR_VERSION }}
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v2
         id: mix-cache
         with:
           path: |
@@ -44,20 +43,24 @@ jobs:
       - name: Build Site
         run: mix freeze
 
-      - name: Upload Site
-        uses: actions/upload-pages-artifact@v1
+      - name: Archive Site
+        uses: actions/upload-artifact@v2
         with:
+          name: site
           path: ${{ env.EXAMPLE_PROJECT }}/_freeze
 
   deploy:
     needs: build
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/deploy-pages@v1
+      - uses: actions/download-artifact@v2
+        with:
+          name: site
+
+      - uses: netlify/actions/cli@v1
+        with:
+          command: deploy
+          args: --dir=_freeze --prod
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
