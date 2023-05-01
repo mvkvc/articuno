@@ -27,4 +27,4 @@ end
 ## Folder structure
 
 - `articuno` is the library.
-- `nimble_school` is an example application for testing.
+- `nimble_school` is an example application for testing taken from the examples at <https://elixirschool.com/en/lessons/misc/nimble_publisher>.
