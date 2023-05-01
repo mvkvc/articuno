@@ -4,7 +4,7 @@
 
 Freeze your Phoenix web application into a static site.
 
-This library can be used for any Phoenix application that doesn't need to be dynamic such as a blog. I created it so that I could host a NimblePublisher blog on a static host such as GitHub Pages.
+This library can be used for any Phoenix application that doesn't need to be dynamic such as a blog. I created it so that I could host a NimblePublisher blog on a static host such as GitHub Pages. The example site is hosted at: <https://articuno-demo.netlify.app>.
 
 ## Installation
 
