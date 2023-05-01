@@ -1,14 +1,13 @@
-defmodule SimplePlugStatic.Application do
+defmodule Articuno.Application do
   use Application
+  require Logger
 
-  @impl true
   def start(_type, _args) do
     children = [
-      {Plug.Cowboy,
-       scheme: :http, plug: {Plug.Static, at: "/", from: "assets"}, options: [port: 3000]}
+      {Plug.Cowboy, scheme: :http, plug: Articuno.Router, options: [port: 3000]}
     ]
 
-    opts = [strategy: :one_for_one, name: SimplePlugStatic.Supervisor]
+    opts = [strategy: :one_for_one, name: Articuno.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end

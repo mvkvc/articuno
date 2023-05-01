@@ -1,3 +1,26 @@
 # articuno
 
 Freeze your Phoenix web application into a static site.
+
+## Installation
+
+Add `articuno` to your list of dependencies in `mix.exs`:
+
+```elixir
+def deps do
+  [
+    {:articuno, git: "https://github.com/mvkvc/articuno.git", subdir: "articuno"}
+  ]
+end
+```
+
+## Usage
+
+- `mix freeze.init` to generate the config file which contains a function the user needs to implement that returns the routes to freeze.
+- `mix freeze` to generate the static site, by default in `_freeze`.
+- `mix freeze.serve` to serve the static site, by default at `localhost:3000`.
+
+## Folder structure
+
+- `articuno` is the library.
+- `nimble_school` is an example application for testing.

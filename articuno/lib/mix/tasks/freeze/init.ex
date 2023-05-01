@@ -1,6 +1,6 @@
 defmodule Mix.Tasks.Freeze.Init do
   use Mix.Task
-  alias Articuno.Config
+  import Articuno.Config
 
   @default_path "priv/freeze.exs"
 
@@ -16,7 +16,7 @@ defmodule Mix.Tasks.Freeze.Init do
         IO.puts("Freeze file already exists")
 
       true ->
-        Config.generate_default_config(path)
+        generate_default_config(path)
     end
   end
 end
