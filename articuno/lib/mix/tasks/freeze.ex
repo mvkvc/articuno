@@ -9,6 +9,7 @@ defmodule Mix.Tasks.Freeze do
 
   def run(args) do
     Mix.Task.run("phx.digest")
+    File.rm_rf!(@default_path)
     File.cp_r!("priv/static", @default_path)
     app = Mix.Project.config()[:app]
     app |> IO.inspect()
