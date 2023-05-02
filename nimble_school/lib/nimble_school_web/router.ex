@@ -14,17 +14,17 @@ defmodule NimbleSchoolWeb.Router do
     plug(:accepts, ["json"])
   end
 
-  # scope "/", NimbleSchoolWeb do
-  #   pipe_through(:browser)
+  scope "/", NimbleSchoolWeb do
+    pipe_through(:browser)
 
-  #   get("/", PageController, :index)
-  # end
+    get("/", PageController, :index)
+  end
 
   scope "/", NimbleSchoolWeb do
     pipe_through(:browser)
 
-    get("/", BlogController, :index)
-    get("/:id", BlogController, :show)
+    get("/blog", BlogController, :index)
+    get("/blog/:id", BlogController, :show)
   end
 
   # Other scopes may use custom stacks.

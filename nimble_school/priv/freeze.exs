@@ -2,16 +2,15 @@ defmodule Freeze do
   import NimbleSchool.Blog
 
   def get_urls() do
-    # index = ""
-    blog = ""
+    index = ""
+    blog = "/blog"
 
     posts =
       all_posts()
-      |> Enum.map(fn post -> "/" <> post.id end)
+      |> Enum.map(fn post -> post.id end)
+      |> Enum.map(fn id -> blog <> "/" <> id end)
 
-    # |> Enum.map(fn id -> blog <> "/" <> id end)
-
-    [blog] ++ posts
+    [index, blog] ++ posts
   end
 end
 
