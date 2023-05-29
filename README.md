@@ -1,6 +1,6 @@
 # articuno
 
-[![deploy](https://github.com/mvkvc/articuno/actions/workflows/deploy.yaml/badge.svg?branch=main)](https://github.com/mvkvc/articuno/actions/workflows/deploy.yaml)
+[![docs](https://github.com/mvkvc/articuno/actions/workflows/docs.yaml/badge.svg)](https://github.com/mvkvc/articuno/actions/workflows/docs.yaml)
 
 Freeze your Phoenix web application into a static site.
 
