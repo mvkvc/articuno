@@ -4,7 +4,7 @@
 
 Freeze your Phoenix web application into a static site.
 
-This library can be used for any Phoenix application that serves static content. It was inspired by [Frozen-Flask](https://github.com/Frozen-Flask/Frozen-Flask) and first created to deploy a [NimblePublisher](https://github.com/dashbitco/nimble_publisher) blog as a static site. There is a demo site deployed with Articuno built from this [example](https://elixirschool.com/en/lessons/misc/nimble_publisher) available [here](https://articuno-demo.netlify.app).
+This library can be used for any Phoenix application that serves static content. It was inspired by [Frozen-Flask](https://github.com/Frozen-Flask/Frozen-Flask) and first created to deploy a [NimblePublisher](https://github.com/dashbitco/nimble_publisher) blog as a static site. There is a demo site available [here](https://github.com/mvkvc/articuno_demo).
 
 For more information see the [documentation]().
 
